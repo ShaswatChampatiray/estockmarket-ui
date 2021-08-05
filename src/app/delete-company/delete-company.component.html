@@ -1,0 +1,16 @@
+<div class="card" style="width: 18rem; margin: 21px;">
+    <div class="card-body" [matBadge]="5">
+      <h2> {{ companyRecord?.companyName }} - ( {{ companyRecord?.companyCode }} )</h2>
+      <h4> {{ companyRecord?.companyCEO }}</h4>
+      <h4> {{ companyRecord?.companyWebsite }}</h4>
+      <h4> {{ companyRecord?.companyTurnover }}</h4>
+      <h4> {{ companyRecord?.stockExchange }}</h4>
+      
+        <button class="noOutlinebutton" mat-raised-button color="primary" [routerLink]="['/Dashboard']">
+            <mat-icon>keyboard_backspace</mat-icon>
+        </button>   &nbsp;  &nbsp;  &nbsp;
+      <button class="noOutlinebutton" mat-fab color="accent" aria-label="Example icon button with a delete icon" (click)="OnDeleteConfirm()">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </div>

@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+      <div class="col-sm-4"><strong>Company Name: </strong> {{ companyRecord?.companyName }} </div>
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4"><strong>Company Code: </strong> {{ companyRecord?.companyCode }} </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4"><strong>Company CEO: </strong> {{ companyRecord?.companyCEO }}</div>
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4"><strong>Company Website: </strong> {{ companyRecord?.companyWebsite }}</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4"><strong>Company Turnover: </strong> {{ companyRecord?.companyTurnover }}</div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4"><strong>Stock Exchange: </strong> {{ companyRecord?.stockExchange }}</div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+        <br><br><hr>
+      <div class="col-sm-12 text-center"><h2>STOCKS </h2> </div>
+    </div>
+
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">S.No</th>
+                <th scope="col">Stock Price</th>
+                <th scope="col">Date</th>
+                <th scope="col">Time</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor = "let item of companyRecord?.stocks?.stocks">
+                <th scope="row">{{ item.stockId }}</th>
+                <td>{{ item.stockPrice }}</td>
+                <td>{{ item.stockPurchaseDateTime }}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <button class="noOutlinebutton" mat-raised-button color="primary" aria-label="Example icon button with a delete icon" [routerLink]="['/AddStock', companyCode]">
+            <mat-icon>add</mat-icon> Add Stock
+          </button>  &nbsp;  &nbsp;  &nbsp;
+
+      
+  </div>

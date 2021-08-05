@@ -1,0 +1,22 @@
+<form class="example-form" [formGroup]="stockForm">
+    <mat-form-field class="example-full-width">
+      <mat-label>Company Code</mat-label>
+      <input matInput formControlName="CompanyCode">
+      <mat-error *ngIf="stockForm.get('CompanyCode')?.errors?.error"> {{ stockForm.get('CompanyCode')?.errors?.error }}</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Stock Price</mat-label>
+      <input matInput formControlName="StockPrice">
+      <mat-error *ngIf="stockForm.get('StockPrice')?.errors?.error"> {{ stockForm.get('StockPrice')?.errors?.error }}</mat-error>
+    </mat-form-field>
+    <br>
+</form>
+  
+    <button class="noOutlinebutton" mat-raised-button color="primary" [routerLink]="['/Dashboard']">
+        <mat-icon>keyboard_backspace</mat-icon>
+    </button>   &nbsp;  &nbsp;  &nbsp;
+    <button class="noOutlinebutton" mat-raised-button color="accent" [disabled]="stockForm.invalid" (click)="AddStock()">
+        <mat-icon>person_add</mat-icon>
+        Add Stock
+    </button>

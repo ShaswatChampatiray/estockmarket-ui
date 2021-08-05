@@ -1,0 +1,46 @@
+<form class="example-form" [formGroup]="companyForm">
+    <mat-form-field class="example-full-width">
+      <mat-label>Company Code</mat-label>
+      <input matInput disabled [value]=this.companyCode> 
+      <mat-error *ngIf="companyForm.get('CompanyCode')?.errors?.error"> {{ companyForm.get('CompanyCode')?.errors?.error }}</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Company Name</mat-label>
+      <input matInput formControlName="CompanyName">
+      <mat-error *ngIf="companyForm.get('CompanyName')?.errors?.error"> {{ companyForm.get('CompanyName')?.errors?.error }}</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>CEO</mat-label>
+      <input matInput formControlName="CompanyCEO">
+      <mat-error *ngIf="companyForm.get('CompanyCEO')?.errors?.error"> {{ companyForm.get('CompanyCEO')?.errors?.error }}</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Turnover</mat-label>
+      <input matInput formControlName="CompanyTurnover">
+      <mat-error *ngIf="companyForm.get('CompanyTurnover')?.errors?.error"> {{ companyForm.get('CompanyTurnover')?.errors?.error }}</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Stock Exchange</mat-label>
+      <input matInput formControlName="StockExchange">
+      <mat-error *ngIf="companyForm.get('StockExchange')?.errors?.error"> {{ companyForm.get('StockExchange')?.errors?.error }}</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field class="example-full-width">
+      <mat-label>Website</mat-label>
+      <input matInput formControlName="CompanyWebsite">
+      <mat-error *ngIf="companyForm.get('CompanyWebsite')?.errors?.error"> {{ companyForm.get('CompanyWebsite')?.errors?.error }}</mat-error>
+    </mat-form-field>
+</form>
+  
+    <button class="noOutlinebutton" mat-raised-button color="primary" [routerLink]="['/Dashboard']">
+        <mat-icon>keyboard_backspace</mat-icon>
+    </button>   &nbsp;  &nbsp;  &nbsp;
+    <button class="noOutlinebutton" mat-raised-button color="accent" [disabled]="companyForm.invalid" (click) = "UpdateCompany()">
+        <mat-icon>person_add</mat-icon>
+        Update Company
+    </button>
+  
