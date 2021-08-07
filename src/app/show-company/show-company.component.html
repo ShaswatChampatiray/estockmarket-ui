@@ -1,48 +1,115 @@
 <div class="container">
-    <div class="row">
-      <div class="col-sm-4"><strong>Company Name: </strong> {{ companyRecord?.companyName }} </div>
-      <div class="col-sm-4"></div>
-      <div class="col-sm-4"><strong>Company Code: </strong> {{ companyRecord?.companyCode }} </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <strong>Company Name: </strong> {{ companyRecord?.companyName }}
     </div>
-    <div class="row">
-      <div class="col-sm-4"><strong>Company CEO: </strong> {{ companyRecord?.companyCEO }}</div>
-      <div class="col-sm-4"></div>
-      <div class="col-sm-4"><strong>Company Website: </strong> {{ companyRecord?.companyWebsite }}</div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4"><strong>Company Turnover: </strong> {{ companyRecord?.companyTurnover }}</div>
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4"><strong>Stock Exchange: </strong> {{ companyRecord?.stockExchange }}</div>
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+      <strong>Company Code: </strong> {{ companyRecord?.companyCode }}
     </div>
   </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <strong>Company CEO: </strong> {{ companyRecord?.companyCEO }}
+    </div>
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+      <strong>Company Website: </strong> {{ companyRecord?.companyWebsite }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <strong>Company Turnover: </strong> {{ companyRecord?.companyTurnover }}
+    </div>
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+      <strong>Stock Exchange: </strong> {{ companyRecord?.stockExchange }}
+    </div>
+  </div>
+</div>
 
-  <div class="container">
-    <div class="row">
-        <br><br><hr>
-      <div class="col-sm-12 text-center"><h2>STOCKS </h2> </div>
+<div class="container">
+  <div class="row">
+    <br /><br />
+    <hr />
+    <div class="col-sm-12 text-center"><h2>STOCKS</h2></div>
+  </div>
+  <div class="row">
+    <div class="col-md-3">Date Range</div>
+    <div class="col-md-3">
+      <mat-form-field>
+        <mat-label>Choose start date</mat-label>
+        <input matInput [matDatepicker]="startDatepicker" [formControl]="startDate"/>
+        <mat-datepicker-toggle matSuffix [for]="startDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #startDatepicker></mat-datepicker>
+      </mat-form-field>
     </div>
 
-        <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col">S.No</th>
-                <th scope="col">Stock Price</th>
-                <th scope="col">Date</th>
-                <th scope="col">Time</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor = "let item of companyRecord?.stocks?.stocks">
-                <th scope="row">{{ item.stockId }}</th>
-                <td>{{ item.stockPrice }}</td>
-                <td>{{ item.stockPurchaseDateTime }}</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <button class="noOutlinebutton" mat-raised-button color="primary" aria-label="Example icon button with a delete icon" [routerLink]="['/AddStock', companyCode]">
-            <mat-icon>add</mat-icon> Add Stock
-          </button>  &nbsp;  &nbsp;  &nbsp;
-
-      
+    <div class="col-md-3">
+      <mat-form-field>
+        <mat-label>Choose end date</mat-label>
+        <input matInput [matDatepicker]="endDatepicker" [formControl]="endDate"/>
+        <mat-datepicker-toggle matSuffix [for]="endDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #endDatepicker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="col-md-3">
+      <button
+        class="noOutlinebutton"
+        mat-raised-button
+        color="primary"
+        (click)="UpdateSearch()"
+      >
+        <mat-icon>search</mat-icon>
+        Search Stocks
+      </button>
+    </div>
   </div>
+  <div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">S.No</th>
+          <th scope="col">Stock Price</th>
+          <th scope="col">Date & Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of stockList">
+          <th scope="row">{{ item.stockId }}</th>
+          <td>{{ item.stockPrice }}</td>
+          <td>{{ item.stockPurchaseDateTime }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <button
+    class="noOutlinebutton"
+    mat-raised-button
+    color="primary"
+    aria-label="Example icon button with a delete icon"
+    [routerLink]="['/AddStock', companyCode]"
+  >
+    <mat-icon>add</mat-icon> Add Stock
+  </button>
+  &nbsp; &nbsp; &nbsp; <br />
+  <hr />
+  <div class="row">
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <td>Min :</td>
+          <td>{{ calculateMin() }}</td>
+        </tr>
+        <tr>
+          <td>Max :</td>
+          <td>{{ calculateMax() }}</td>
+        </tr>
+        <tr>
+          <td>Avg :</td>
+          <td>{{ calculateAvg() }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

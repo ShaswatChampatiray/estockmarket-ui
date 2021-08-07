@@ -5,11 +5,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { MatRippleModule } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 
@@ -26,7 +26,10 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatRippleModule,
     MatBadgeModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule
+
   ]
 })
 export class MaterialModule { }

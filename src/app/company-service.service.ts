@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Companies } from './models/Companies';
 import { Company } from './models/company';
 import { Stock } from './models/stock';
+import { formatDate } from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,7 @@ export class CompanyServiceService {
   private updateCompanyUrl = 'http://localhost:8081/api/v1.0/market/company/register';
   private deleteCompanyUrl = 'http://localhost:8081/api/v1.0/market/company/delete/';
   private addStockUrl = 'http://localhost:8081/api/v1.0/market/stock/add/';
-  private getStockUrl = 'http://localhost:8081/api/v1.0/market/stock/get/{companyCode}/{startDate}/{endDate}';
+  private getStockUrlDateRange = 'http://localhost:8081/api/v1.0/market/stock/get/';
 
   constructor(private httpClient : HttpClient) { }
 
@@ -44,7 +45,12 @@ export class CompanyServiceService {
     return this.httpClient.post(this.addStockUrl+stock.companyCode, stock);
   }
 
-  getStockInfo(companyCode:string, startDate: string, endDate: string) {
-    //return this.httpClient.post(this.getStockUrl + companyCode );
+  getStockInfoInDateRange(companyCode: string, startDate: Date, endDate: Date) {
+    let format = "YYYY-MM-ddThh:mm:ss";
+    let formattedStartDate = formatDate(startDate, format, 'en-US');
+    let formattedEndDate = formatDate(endDate, format, 'en-US');
+    let url = this.getStockUrlDateRange + companyCode + '/' + formattedStartDate + '/' + formattedEndDate;
+    console.log("url " + url);
+    return this.httpClient.get(url);
   }
 }
